@@ -21,9 +21,10 @@ function GameBoard() {
   ];
   const [gameBoard, setGameBoard] = useState(emptyBoard);
   const [counter, setCounter] = useState(0);
-  const [showpopup, setShowPopup] = useState(true);
+  const [showpopup, setShowPopup] = useState(false);
   const [message, setMessage] = useState('');
   const [title, setTitle] = useState('This is default title');
+  const [activeplayer, setActivePlayer] = useState(true);
 
   const horizontalVerticalCheck = (row, column) => {
     let returnValue = false;
@@ -96,8 +97,10 @@ function GameBoard() {
       let value = '';
       if (counter % 2 == 0) {
         value = 'x';
+        setActivePlayer(false);
       } else {
         value = 'o';
+        setActivePlayer(true);
       }
       let updateGameBoard = [...gameBoard];
       updateGameBoard[row][column] = value;
@@ -106,33 +109,34 @@ function GameBoard() {
         return (counter = counter + 1);
       });
       let result = false;
-      if (row - column == 2 || row - column == -2 || row - column == 0) {
-        result = diagonalCheck(row, column);
+      result = diagonalCheck(row, column);
+      if (result) {
+        setShowPopup(true);
+        setMessage('You Won the game');
+      } else {
+        result = horizontalVerticalCheck(row, column);
         if (result) {
-          //alert('You Won the game')
           setShowPopup(true);
           setMessage('You Won the game');
         }
       }
-      if (!result) {
-        if (row - column == -1 || row - column == 1) {
-          result = horizontalVerticalCheck(row, column);
-          if (result) {
-            setShowPopup(true);
-            setMessage('You Won the game');
-          }
-        }
+      if (counter == 9) {
+        setShowPopup(true);
+        setMessage('Game Over');
       }
     }
   };
 
   const resetGame = () => {
     setGameBoard(emptyBoard);
+    setCounter(0);
+    setActivePlayer(true);
   };
 
   return (
     <>
       <div className="playground">
+        <span className={`${activeplayer ? 'active' : ''} player`}>X</span>
         <div className="board">
           {boxIndex &&
             boxIndex.map((ele, index) => {
@@ -151,8 +155,11 @@ function GameBoard() {
               );
             })}
         </div>
+        <span className={`${!activeplayer ? 'active' : ''} player`}>O</span>
       </div>
-      <button onClick={resetGame}>Reset Game</button>
+      <button className="btn" onClick={resetGame}>
+        Reset Game
+      </button>
 
       <ResultPopup
         show={showpopup}
