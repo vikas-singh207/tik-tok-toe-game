@@ -1,0 +1,27 @@
+*{
+  padding:0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+
+.playground{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.board{
+  height: 300px;
+  width: 300px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.box{
+  height: 100px;
+  width: 100px;
+  border: 1px solid black;
+  font-size: 100px;
+  text-align: center;
+  font-family: Sans-serif;
+}

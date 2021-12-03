@@ -1,0 +1,60 @@
+.modal {
+  position: fixed;
+  top: 0%;
+  height: 100vh;
+  width: 100%;
+  z-index: 1;
+}
+.overlay {
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(100, 100, 100, 0.5);
+  z-index: 2;
+}
+.popup {
+  position: fixed;
+  padding-top: 10%;
+  padding-left: 22%;
+  z-index: 3;
+}
+.h-300{
+  height: 300px;
+}
+.w-600{
+  width: 600px;
+}
+.popup__content {
+  height: 300px;
+  width: 600px;
+  border: 1px solid black;
+}
+
+.header{
+  height: 15%;
+  width: 100%;
+  background-color:red;
+  text-align: center;
+  padding: 15px;
+  display: flex;
+}
+.popup__title{
+  width: 90%;
+  text-align: center;
+  font-family: Sans-serif;
+}
+.popup__close{
+  width: 10%;
+  text-align: center;
+  font-family: Sans-serif;
+}
+.body{
+  height: 70%;
+  width: 100%;
+  text-align: center;
+}
+.footer{
+  height: 15%;
+  width: 100%;
+  background-color:red;
+}
